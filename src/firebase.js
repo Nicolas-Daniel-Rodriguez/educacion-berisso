@@ -3,12 +3,13 @@ import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "your-api-key",
-  authDomain: "your-auth-domain",
-  projectId: "your-project-id",
-  storageBucket: "your-storage-bucket",
-  messagingSenderId: "your-messaging-sender-id",
-  appId: "your-app-id"
+  apiKey: "AIzaSyBJcOvbsF29JFCy9wYyQRC5rmOwpdZhmK8",
+  authDomain: "educacion-berisso-fb.firebaseapp.com",
+  projectId: "educacion-berisso-fb",
+  storageBucket: "educacion-berisso-fb.appspot.com",
+  messagingSenderId: "399774790314",
+  appId: "1:399774790314:web:3dfeee5986f717088296d3",
+  measurementId: "G-BRKXXLS1YL"
 };
 
 const app = initializeApp(firebaseConfig);

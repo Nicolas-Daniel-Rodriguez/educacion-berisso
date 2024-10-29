@@ -2,22 +2,46 @@ import React, { useEffect, useState } from "react";
 
 const CourseForm = ({ show, onClose, courseData, onSave }) => {
   const [courseInfo, setCourseInfo] = useState({
-    Titulo: "",
-    Descripcion: "",
-    Institucion: "",
-    Direccion: "",
-    Fecha_Inicio: "",
-    Fecha_Fin: "",
-    Dias_Y_Horarios: "",
-    Link_Pagina_Institucion: "",
-    Familia_Profesional: "",
+    title: "",
+    description: "",
+    institution: "",
+    address: "",
+    startDate: "",
+    endDate: "",
+    daysAndHours: "",
+    institutionLink: "",
+    professionalFamily: "",
   });
+
+  const professionalFamilies = [
+    "Metalmecánica",
+    "Informática",
+    "Salud",
+    "Administración",
+  ];
 
   useEffect(() => {
     if (courseData) {
       setCourseInfo(courseData);
+    } else {
+      // Limpia el formulario cuando no hay datos del curso
+      resetForm();
     }
-  }, [courseData]);
+  }, [courseData, show]); // Agregar `show` para reiniciar el formulario al cerrar
+
+  const resetForm = () => {
+    setCourseInfo({
+      title: "",
+      description: "",
+      institution: "",
+      address: "",
+      startDate: "",
+      endDate: "",
+      daysAndHours: "",
+      institutionLink: "",
+      professionalFamily: "",
+    });
+  };
 
   const handleChange = (e) => {
     setCourseInfo({
@@ -28,8 +52,9 @@ const CourseForm = ({ show, onClose, courseData, onSave }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSave(courseInfo); // Llamar a la función para guardar el curso
-    onClose(); // Cerrar el popup al enviar
+    onSave(courseInfo);
+    resetForm(); // Limpia el formulario después de guardar
+    onClose(); // Cierra el formulario
   };
 
   if (!show) return null;
@@ -39,19 +64,43 @@ const CourseForm = ({ show, onClose, courseData, onSave }) => {
       <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md max-h-[80%] overflow-y-auto">
         <h2 className="text-xl font-semibold mb-4">{courseData ? "Editar Curso" : "Nuevo Curso"}</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
-          {Object.keys(courseInfo).map((field) => (
-            <div key={field} className="flex flex-col">
-              <label className="text-gray-700 capitalize">{field}</label>
-              <input
-                type={field === "startDate" || field === "endDate" ? "date" : "text"}
-                name={field}
-                value={courseInfo[field]}
-                onChange={handleChange}
-                className="p-2 border rounded"
-                required
-              />
-            </div>
-          ))}
+          {Object.keys(courseInfo).map((field) => {
+            if (field === "professionalFamily") {
+              return (
+                <div key={field} className="flex flex-col">
+                  <label className="text-gray-700 capitalize">Familia Profesional</label>
+                  <select
+                    name={field}
+                    value={courseInfo[field]}
+                    onChange={handleChange}
+                    className="p-2 border rounded"
+                    required
+                  >
+                    <option value="">Selecciona una familia</option>
+                    {professionalFamilies.map((family) => (
+                      <option key={family} value={family}>
+                        {family}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              );
+            } else {
+              return (
+                <div key={field} className="flex flex-col">
+                  <label className="text-gray-700 capitalize">{field}</label>
+                  <input
+                    type={field.includes("Date") ? "date" : "text"}
+                    name={field}
+                    value={courseInfo[field]}
+                    onChange={handleChange}
+                    className="p-2 border rounded"
+                    required
+                  />
+                </div>
+              );
+            }
+          })}
           <button type="submit" className="w-full p-2 bg-green-500 text-white rounded">
             Guardar
           </button>

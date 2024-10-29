@@ -1,17 +1,20 @@
 import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
+import { useNavigate } from "react-router-dom";
 
 const LoginPopup = ({ show, onClose }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, password);
       onClose(); // Cerrar el pop-up después de iniciar sesión
+      navigate("/Dashboard");
     } catch (err) {
       setError(err.message);
     }
