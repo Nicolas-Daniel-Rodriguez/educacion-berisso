@@ -94,7 +94,11 @@ const Home = () => {
   return (
     <div className="min-h-screen">
       {/* Imagen y título */}
-      <div className="relative w-full h-96 bg-cover bg-center" style={{ backgroundImage: "url('/path-to-your-image.jpg')" }}>
+      <div className="relative w-full h-96 bg-cover bg-center" style={{
+        backgroundImage: `url(${require('../assets/img/portada.jpg')})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center'
+      }}>
         <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center">
           <h1 className="text-5xl text-white font-bold">Educación Berisso</h1>
           <p className="text-xl text-white mt-4">Capacitate en tu ciudad</p>
@@ -119,7 +123,7 @@ const Home = () => {
       </div>
 
       {/* Filtro y buscador */}
-      <div className="p-6 flex justify-center space-x-4">
+      <div className="p-6 flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
         {/* Filtro por familias profesionales */}
         <select
           value={selectedFamily}
@@ -149,11 +153,11 @@ const Home = () => {
             <img src={course.image} alt={course.title} className="h-40 w-full object-cover rounded mb-4" />
             <h2 className="text-xl font-bold mb-2">{course.title}</h2>
             <p className="text-sm text-gray-700">{course.description}</p>
-            <p className="text-sm text-gray-600">Institución: {course.institution}</p>
-            <p className="text-sm text-gray-600">Dirección: {course.address}</p>
-            <p className="text-sm text-gray-600">Fecha de inicio: {course.startDate}</p>
-            <p className="text-sm text-gray-600">Fecha de fin: {course.endDate}</p>
-            <p className="text-sm text-gray-600">Días y horarios: {course.schedule}</p>
+            <p className="text-sm text-gray-600"><strong>Institución:</strong> {course.institution}</p>
+            <p className="text-sm text-gray-600"><strong>Dirección:</strong> {course.address}</p>
+            <p className="text-sm text-gray-600"><strong>Fecha de inicio:</strong> {course.startDate}</p>
+            <p className="text-sm text-gray-600"><strong>Fecha de fin:</strong> {course.endDate}</p>
+            <p className="text-sm text-gray-600"><strong>Días y horarios:</strong> {course.schedule}</p>
             <a href={course.link} className="text-blue-500 mt-2 inline-block">Más información</a>
           </div>
         ))}

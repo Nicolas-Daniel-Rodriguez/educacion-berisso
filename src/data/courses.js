@@ -1,8 +1,8 @@
 const coursesData = [
   {
     id: 1,
-    image: "/path-to-image.jpg",
-    title: "Curso de Programación Web",
+    image: require('../assets/img/programacion.jpg'),
+    title: "Curso de Programación Web 1",
     description: "Aprende a programar desde cero con HTML, CSS y JavaScript.",
     institution: "Instituto XYZ",
     address: "Calle Falsa 123",
@@ -14,7 +14,7 @@ const coursesData = [
   },
   {
     id: 2,
-    image: "path-to-image-2.jpg",
+    image: require('../assets/img/marketing.jpg'),
     title: "Curso de Marketing Digital",
     description: "Domina las estrategias de marketing online.",
     institution: "Academia ABC",
@@ -27,7 +27,7 @@ const coursesData = [
   },
   {
     id: 3,
-    image: "/path-to-image.jpg",
+    image: require('../assets/img/programacion.jpg'),
     title: "Curso de Programación Web",
     description: "Aprende a programar desde cero con HTML, CSS y JavaScript.",
     institution: "Instituto XYZ",
@@ -40,7 +40,7 @@ const coursesData = [
   },
   {
     id: 4,
-    image: "/path-to-image.jpg",
+    image: require('../assets/img/programacion.jpg'),
     title: "Curso de Programación Web",
     description: "Aprende a programar desde cero con HTML, CSS y JavaScript.",
     institution: "Instituto XYZ",
@@ -53,7 +53,7 @@ const coursesData = [
   },
   {
     id: 5,
-    image: "path-to-image-2.jpg",
+    image: require('../assets/img/marketing.jpg'),
     title: "Curso de Marketing Digital",
     description: "Domina las estrategias de marketing online.",
     institution: "Academia ABC",
@@ -66,7 +66,7 @@ const coursesData = [
   },
   {
     id: 6,
-    image: "/path-to-image.jpg",
+    image: require('../assets/img/programacion.jpg'),
     title: "Curso de Programación Web",
     description: "Aprende a programar desde cero con HTML, CSS y JavaScript.",
     institution: "Instituto XYZ",
@@ -79,7 +79,7 @@ const coursesData = [
   },
   {
     id: 7,
-    image: "/path-to-image.jpg",
+    image: require('../assets/img/programacion.jpg'),
     title: "Curso de Programación Web",
     description: "Aprende a programar desde cero con HTML, CSS y JavaScript.",
     institution: "Instituto XYZ",
@@ -92,7 +92,7 @@ const coursesData = [
   },
   {
     id: 8,
-    image: "path-to-image-2.jpg",
+    image: require('../assets/img/marketing.jpg'),
     title: "Curso de Marketing Digital",
     description: "Domina las estrategias de marketing online.",
     institution: "Academia ABC",
@@ -105,7 +105,7 @@ const coursesData = [
   },
   {
     id: 9,
-    image: "/path-to-image.jpg",
+    image: require('../assets/img/programacion.jpg'),
     title: "Curso de Programación Web",
     description: "Aprende a programar desde cero con HTML, CSS y JavaScript.",
     institution: "Instituto XYZ",
@@ -118,7 +118,7 @@ const coursesData = [
   },
   {
     id: 10,
-    image: "/path-to-image.jpg",
+    image: require('../assets/img/programacion.jpg'),
     title: "Curso de Programación Web",
     description: "Aprende a programar desde cero con HTML, CSS y JavaScript.",
     institution: "Instituto XYZ",
@@ -131,7 +131,7 @@ const coursesData = [
   },
   {
     id:11,
-    image: "path-to-image-2.jpg",
+    image: require('../assets/img/marketing.jpg'),
     title: "Curso de Marketing Digital",
     description: "Domina las estrategias de marketing online.",
     institution: "Academia ABC",
@@ -144,7 +144,7 @@ const coursesData = [
   },
   {
     id:12,
-    image: "/path-to-image.jpg",
+    image: require('../assets/img/programacion.jpg'),
     title: "Curso de Programación Web",
     description: "Aprende a programar desde cero con HTML, CSS y JavaScript.",
     institution: "Instituto XYZ",
