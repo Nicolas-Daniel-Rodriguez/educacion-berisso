@@ -8,7 +8,7 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [courses, setCourses] = useState([]);
-  const [editingCourse, setEditingCourse] = useState(false); 
+  const [editingCourse, setEditingCourse] = useState(null); 
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -16,7 +16,7 @@ const Dashboard = () => {
         setUser(user);
         fetchCourses(user.uid);
       } else {
-        //navigate("/"); // Redirigir si no está autenticado
+        navigate("/"); // Redirigir si no está autenticado
       }
     });
     return () => unsubscribe();
@@ -32,7 +32,7 @@ const Dashboard = () => {
       setCourses(coursesList);
     } catch (error) {
       console.error("Error fetching courses: ", error);
-    }
+    } 
   };
 
   const saveCourse = async (courseData) => {
@@ -84,7 +84,7 @@ const Dashboard = () => {
       {user && <p>Bienvenido, {user.email}</p>}
 
       <button
-        onClick={() => setEditingCourse(true)} 
+        onClick={() => setEditingCourse({})} 
         className="my-4 p-2 bg-blue-500 text-white rounded"
       >
         Crear Curso
@@ -97,10 +97,12 @@ const Dashboard = () => {
         {courses.map(course => (
           <li key={course.id} className="border p-4 my-2 flex justify-between">
             <div>
-              <h2 className="text-xl">{course.title}</h2>
-              <p>{course.description}</p>
-              <p>{course.schedule}</p>
-              <p>{course.institution}</p>
+              <h2 className="text-xl"><strong>{course.title}</strong></h2>
+              <p><strong>Dirección:</strong> {course.address}</p>
+              <p><strong>Fecha de Inicio:</strong> {course.startDate}</p>
+              <p><strong>Fecha de Finalización:</strong> {course.endDate}</p>
+              <p><strong>Días y Horarios:</strong> {course.daysAndHours}</p>
+              <p><strong>Link:</strong> {course.institutionLink}</p>
             </div>
             <div className="flex space-x-2">
               <button
@@ -120,8 +122,9 @@ const Dashboard = () => {
         ))}
       </ul>
       {/* Muestra el formulario como un popup si hay un curso editando */}
-      {editingCourse !== null && (
+      {editingCourse && (
               <CourseForm 
+                show={Boolean(editingCourse)}
                 onClose={() => setEditingCourse(null)} // Función para cerrar el formulario
                 courseData={editingCourse} // Envío de datos del curso para editar
                 onSave={saveCourse} // Pasar la función para guardar el curso
