@@ -3,6 +3,8 @@ import { auth, db } from "../firebase";
 import { useNavigate } from "react-router-dom";
 import { collection, getDocs, addDoc, deleteDoc, doc, updateDoc } from "firebase/firestore";
 import CourseForm from "../components/CourseForm";
+import logo1 from '../assets/img/Logo-gob-blanco.png';
+import logo2 from '../assets/img/Logo-muni.png';
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -79,7 +81,21 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="p-4">
+    <div className="min-h-screen">
+      {/* Imagen y título */}
+      <div className="relative w-full h-48 bg-cover bg-center" style={{
+        backgroundImage: `url(${require('../assets/img/portada.jpg')})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center'
+      }}>
+        <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center">
+          <h1 className="text-5xl text-white font-bold">Estudia en Berisso</h1>
+          <p className="text-xl text-white mt-4">Capacitate en tu ciudad</p>
+        </div>
+      </div>
+      
+
+      <div className="p-8">
       <h1 className="text-2xl">Panel de Carga de Información</h1>
       {user && <p>Bienvenido, {user.email}</p>}
 
@@ -134,6 +150,15 @@ const Dashboard = () => {
         Cerrar Sesión
       </button>
     </div>
+
+    {/* Franja con título y logos */}
+    <div className="flex items-center  justify-evenly bg-blue-500 p-4 space-x-8">
+        <h1 className="text-2xl font-bold text-white ">Coordinación de Políticas <br />Socioeducativas</h1>
+        <img src={logo1} alt="Logo Secretaria de Gobierno" className="h-16 mx-8" />
+        <img src={logo2} alt="Logo Municipalidad de Berisso" className="h-16 mx-8" />
+      </div>
+    </div>
+    
   );
 };
 

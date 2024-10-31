@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import coursesData from "../data/courses"; // Asegúrate de que la ruta sea correcta
 import LoginPopup from "../components/LoginPopup";
+import logo1 from '../assets/img/Logo-gob-blanco.png';
+import logo2 from '../assets/img/Logo-muni.png';
 
 const Home = () => {
   const [showLogin, setShowLogin] = useState(false);
@@ -14,9 +16,9 @@ const Home = () => {
   useEffect(() => {
     const today = new Date();
     const filtered = coursesData
-      .filter(course => 
+      .filter(course =>
         (course.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-         course.description.toLowerCase().includes(searchTerm.toLowerCase())) &&
+          course.description.toLowerCase().includes(searchTerm.toLowerCase())) &&
         (selectedFamily === "" || course.family === selectedFamily) &&  // Filtra por familia si está seleccionada
         new Date(course.endDate) > today // Solo muestra cursos con fecha de fin futura
       )
@@ -100,9 +102,16 @@ const Home = () => {
         backgroundPosition: 'center'
       }}>
         <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center">
-          <h1 className="text-5xl text-white font-bold">Educación Berisso</h1>
+          <h1 className="text-5xl text-white font-bold">Estudia en Berisso</h1>
           <p className="text-xl text-white mt-4">Capacitate en tu ciudad</p>
         </div>
+      </div>
+
+      {/* Franja con título y logos */}
+      <div className="flex items-center  justify-evenly bg-blue-500 p-4 space-x-8">
+        <h1 className="text-2xl font-bold text-white ">Coordinación de Políticas <br />Socioeducativas</h1>
+        <img src={logo1} alt="Logo Secretaria de Gobierno" className="h-16 mx-8" />
+        <img src={logo2} alt="Logo Municipalidad de Berisso" className="h-16 mx-8" />
       </div>
 
       {/* Botón de Inicio de Sesión */}
@@ -137,7 +146,7 @@ const Home = () => {
         </select>
 
         {/* Buscador de palabras */}
-        <input 
+        <input
           type="text"
           placeholder="Buscar por palabras clave"
           value={searchTerm}
@@ -165,8 +174,8 @@ const Home = () => {
 
       {/* Paginación */}
       <div className="flex justify-center mt-5">
-          {renderPageNumbers()}
-        </div>
+        {renderPageNumbers()}
+      </div>
     </div>
   );
 };
