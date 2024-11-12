@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef, /*useCallback*/ } from "react";
+import { PROFESSIONAL_FAMILIES } from "../constants";
 
 const CourseForm = ({ show, onClose, courseData, onSave }) => {
   const [courseInfo, setCourseInfo] = useState({
@@ -30,7 +31,7 @@ const CourseForm = ({ show, onClose, courseData, onSave }) => {
   }, [courseData, show]);
 
   const formRef = useRef(null);
-  const professionalFamilies = ["Metalmecánica", "Informática", "Salud", "Administración"];
+  const professionalFamilies = PROFESSIONAL_FAMILIES;
 
   const orderedFields = [
     "title",

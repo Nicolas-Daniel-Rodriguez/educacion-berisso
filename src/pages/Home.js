@@ -1,10 +1,20 @@
 import React, { useState, useEffect } from "react";
-import coursesData from "../data/courses"; // Asegúrate de que la ruta sea correcta
 import LoginPopup from "../components/LoginPopup";
 import logo1 from '../assets/img/Logo-gob-blanco.png';
 import logo2 from '../assets/img/Logo-muni.png';
+import { collection, getDocs } from "firebase/firestore"; // Asegúrate de que firestore esté configurado en Firebase
+import { db } from "../firebase"; // Importa tu configuración de Firebase
+import { PROFESSIONAL_FAMILIES } from "../constants";
+
+
+import tecnologiaImg from "../assets/img/programacion.jpg";
+import marketingImg from "../assets/img/marketing.jpg";
+import administracionImg from "../assets/img/programacion.jpg";
+import metalmecanicaImg from "../assets/img/programacion.jpg";
+
 
 const Home = () => {
+  const professionalFamilies = PROFESSIONAL_FAMILIES;
   const [showLogin, setShowLogin] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedFamily, setSelectedFamily] = useState(""); // Para manejar el filtro de familias
@@ -12,20 +22,38 @@ const Home = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 9;
 
+  const familyImages = {
+    Salud: marketingImg,
+    Informática: tecnologiaImg,
+    Administración: administracionImg,
+    Metalmecánica: metalmecanicaImg,
+  };
+
   // Filtrar cursos según búsqueda por palabras clave y filtro por familia
   useEffect(() => {
-    const today = new Date();
-    const filtered = coursesData
-      .filter(course =>
-        (course.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          course.description.toLowerCase().includes(searchTerm.toLowerCase())) &&
-        (selectedFamily === "" || course.family === selectedFamily) &&  // Filtra por familia si está seleccionada
-        new Date(course.endDate) > today // Solo muestra cursos con fecha de fin futura
-      )
-      .sort((a, b) => new Date(a.startDate) - new Date(b.startDate)); // Ordena por fecha de inicio
+    const fetchCourses = async () => {
+      const today = new Date();
+      const coursesRef = collection(db, "courses");
+      const courseSnapshot = await getDocs(coursesRef);
+      const coursesList = courseSnapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      }));
 
-    setFilteredCourses(filtered);
-  }, [searchTerm, selectedFamily]); // Ejecuta la función cada vez que cambia el término de búsqueda o la familia seleccionada
+      const filtered = coursesList
+        .filter(course =>
+          (course.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            course.description.toLowerCase().includes(searchTerm.toLowerCase())) &&
+          (selectedFamily === "" || course.professionalFamily === selectedFamily) &&
+          new Date(course.endDate) > today
+        )
+        .sort((a, b) => new Date(a.startDate) - new Date(b.startDate));
+
+      setFilteredCourses(filtered);
+    };
+
+    fetchCourses();
+  }, [searchTerm, selectedFamily]);
 
   // Paginación
   const indexOfLastCourse = currentPage * itemsPerPage;
@@ -139,11 +167,13 @@ const Home = () => {
           onChange={(e) => setSelectedFamily(e.target.value)}
           className="p-2 border"
         >
-          <option value="">Todas las familias profesionales</option>
-          <option value="tecnologia">Tecnología</option>
-          <option value="salud">Salud</option>
-          {/* Añade más opciones según las familias profesionales */}
-        </select>
+           <option value="">Todas las familias profesionales</option>
+        {professionalFamilies.map((family) => (
+          <option key={family} value={family}>
+            {family}
+          </option>
+        ))}
+      </select>
 
         {/* Buscador de palabras */}
         <input
@@ -159,15 +189,16 @@ const Home = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
         {currentCourses.map((course) => (
           <div key={course.id} className="border p-4 rounded shadow">
-            <img src={course.image} alt={course.title} className="h-40 w-full object-cover rounded mb-4" />
+            <img src={familyImages[course.professionalFamily] || marketingImg } alt={course.title} className="h-40 w-full object-cover rounded mb-4" />
             <h2 className="text-xl font-bold mb-2">{course.title}</h2>
             <p className="text-sm text-gray-700">{course.description}</p>
             <p className="text-sm text-gray-600"><strong>Institución:</strong> {course.institution}</p>
             <p className="text-sm text-gray-600"><strong>Dirección:</strong> {course.address}</p>
             <p className="text-sm text-gray-600"><strong>Fecha de inicio:</strong> {course.startDate}</p>
             <p className="text-sm text-gray-600"><strong>Fecha de fin:</strong> {course.endDate}</p>
-            <p className="text-sm text-gray-600"><strong>Días y horarios:</strong> {course.schedule}</p>
-            <a href={course.link} className="text-blue-500 mt-2 inline-block">Más información</a>
+            <p className="text-sm text-gray-600"><strong>Días y horarios:</strong> {course.daysAndHours}</p>
+            <p className="text-sm text-gray-600"><strong>Familia Profesional:</strong> {course.professionalFamily}</p>
+            <a href={course.institutionLink} className="text-blue-500 mt-2 inline-block">Más información</a>
           </div>
         ))}
       </div>
