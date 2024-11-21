@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/educacion-berisso/static/css/main.6f911822.css",
+    "main.js": "/educacion-berisso/static/js/main.7ebaae1c.js",
+    "static/js/488.89301d68.chunk.js": "/educacion-berisso/static/js/488.89301d68.chunk.js",
+    "static/media/portada.jpg": "/educacion-berisso/static/media/portada.b847f3ddf9dd7b6208e7.jpg",
+    "static/media/marketing.jpg": "/educacion-berisso/static/media/marketing.acb5d49c0c83c1fa73f0.jpg",
+    "static/media/programacion.jpg": "/educacion-berisso/static/media/programacion.026b3551a33e35183137.jpg",
+    "index.html": "/educacion-berisso/index.html",
+    "main.6f911822.css.map": "/educacion-berisso/static/css/main.6f911822.css.map",
+    "main.7ebaae1c.js.map": "/educacion-berisso/static/js/main.7ebaae1c.js.map",
+    "488.89301d68.chunk.js.map": "/educacion-berisso/static/js/488.89301d68.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6f911822.css",
+    "static/js/main.7ebaae1c.js"
+  ]
+}
