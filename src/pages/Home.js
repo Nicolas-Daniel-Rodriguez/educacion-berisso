@@ -7,10 +7,10 @@ import { db } from "../firebase"; // Importa tu configuración de Firebase
 import { PROFESSIONAL_FAMILIES } from "../constants";
 
 
-import tecnologiaImg from "../assets/img/programacion.jpg";
-import marketingImg from "../assets/img/marketing.jpg";
-import administracionImg from "../assets/img/programacion.jpg";
-import metalmecanicaImg from "../assets/img/programacion.jpg";
+import informaticaImg from "../assets/img/programacion.jpg";
+import saludImg from "../assets/img/salud.png";
+import administracionImg from "../assets/img/administracion.png";
+import metalmecanicaImg from "../assets/img/metalmecanica.png";
 
 
 const Home = () => {
@@ -23,8 +23,8 @@ const Home = () => {
   const itemsPerPage = 9;
 
   const familyImages = {
-    Salud: marketingImg,
-    Informática: tecnologiaImg,
+    Salud: saludImg,
+    Informática: informaticaImg,
     Administración: administracionImg,
     Metalmecánica: metalmecanicaImg,
   };
@@ -130,17 +130,20 @@ const Home = () => {
         backgroundPosition: 'center'
       }}>
         <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center">
-          <h1 className="text-5xl text-white font-bold">Estudia en Berisso</h1>
+          <h1 className="text-5xl text-white font-bold text-center">Estudia en Berisso</h1>
           <p className="text-xl text-white mt-4">Capacitate en tu ciudad</p>
         </div>
       </div>
 
       {/* Franja con título y logos */}
-      <div className="flex items-center  justify-evenly bg-blue-500 p-4 space-x-8">
-        <h1 className="text-2xl font-bold text-white ">Coordinación de Políticas <br />Socioeducativas</h1>
-        <img src={logo1} alt="Logo Secretaria de Gobierno" className="h-16 mx-8" />
-        <img src={logo2} alt="Logo Municipalidad de Berisso" className="h-16 mx-8" />
+      <div className="flex flex-col md:flex-row items-center justify-evenly bg-blue-500 p-4 space-y-8 md:space-y-0 md:space-x-8">
+        <h1 className="text-2xl font-bold text-white text-center">
+          Coordinación de Políticas <br /> Socioeducativas
+        </h1>
+        <img src={logo1} alt="Logo Secretaria de Gobierno" className="h-16" />
+        <img src={logo2} alt="Logo Municipalidad de Berisso" className="h-16" />
       </div>
+
 
       {/* Botón de Inicio de Sesión */}
       <div className="absolute top-5 right-5">
@@ -181,7 +184,7 @@ const Home = () => {
           placeholder="Buscar por palabras clave"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="p-2 border w-96"
+          className="p-2 border w-full sm:w-80"
         />
       </div>
 
@@ -189,7 +192,7 @@ const Home = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
         {currentCourses.map((course) => (
           <div key={course.id} className="border p-4 rounded shadow">
-            <img src={familyImages[course.professionalFamily] || marketingImg } alt={course.title} className="h-40 w-full object-cover rounded mb-4" />
+            <img src={familyImages[course.professionalFamily] || saludImg } alt={course.title} className="h-40 w-full object-cover rounded mb-4" />
             <h2 className="text-xl font-bold mb-2">{course.title}</h2>
             <p className="text-sm text-gray-700">{course.description}</p>
             <p className="text-sm text-gray-600"><strong>Institución:</strong> {course.institution}</p>

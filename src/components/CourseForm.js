@@ -131,8 +131,18 @@ const CourseForm = ({ show, onClose, courseData, onSave }) => {
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center overflow-y-auto">
       <div
         ref={formRef}
-        className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md max-h-[80%] overflow-y-auto"
+        className="relative bg-white p-6 rounded-lg shadow-lg w-full max-w-md max-h-[80%] overflow-y-auto"
       >
+
+         {/* Botón de cierre (X) */}
+      <button
+        onClick={onClose}
+        className="absolute top-2 right-2 text-2xl text-gray-600 hover:text-black"
+        aria-label="Cerrar formulario"
+      >
+        &#x2715;
+      </button>
+
         <h2 className="text-xl font-semibold mb-4">
           {courseData ? "Editar Curso" : "Nuevo Curso"}
         </h2>

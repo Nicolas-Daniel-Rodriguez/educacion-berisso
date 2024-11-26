@@ -45,7 +45,8 @@ const LoginPopup = ({ show, onClose }) => {
           <button type="submit" className="bg-blue-500 text-white p-2 w-full">
             Iniciar Sesión
           </button>
-        </form>
+        </form><br></br>
+        <p className="text-sm">*Para registrarse enviar los datos de su institución a <strong>socioeducativaberisso@gmail.com</strong></p>
         <button onClick={onClose} className="mt-4 text-blue-500">
           Cerrar
         </button>

@@ -66,7 +66,13 @@ const Dashboard = () => {
     }
   };
 
-  const deleteCourse = async (courseId) => {
+  const deleteCourse = async (courseId, courseTitle) => {
+    const confirmDelete = window.confirm(
+      `¿Estás seguro de que deseas eliminar el curso "${courseTitle}"?`
+    );
+  
+    if (!confirmDelete) return;
+
     try {
       await deleteDoc(doc(db, "courses", courseId));
       fetchCourses(user.uid);
@@ -89,7 +95,7 @@ const Dashboard = () => {
         backgroundPosition: 'center'
       }}>
         <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center">
-          <h1 className="text-5xl text-white font-bold">Estudia en Berisso</h1>
+          <h1 className="text-5xl text-white font-bold text-center mt-10">Estudia en Berisso</h1>
           <p className="text-xl text-white mt-4">Capacitate en tu ciudad</p>
         </div>
       </div>
@@ -111,25 +117,27 @@ const Dashboard = () => {
 
       <ul>
         {courses.map(course => (
-          <li key={course.id} className="border p-4 my-2 flex justify-between">
+          <li key={course.id} className="flex flex-col md:flex-row space-y-4 md:space-y-0 border p-4 my-2 flex justify-between">
             <div>
               <h2 className="text-xl"><strong>{course.title}</strong></h2>
+              <p><strong>Descripción:</strong> {course.description}</p>
               <p><strong>Dirección:</strong> {course.address}</p>
               <p><strong>Fecha de Inicio:</strong> {course.startDate}</p>
               <p><strong>Fecha de Finalización:</strong> {course.endDate}</p>
               <p><strong>Días y Horarios:</strong> {course.daysAndHours}</p>
+              <p><strong>Familia Profesional:</strong> {course.professionalFamily}</p>
               <p><strong>Link:</strong> {course.institutionLink}</p>
             </div>
             <div className="flex space-x-2">
               <button
                 onClick={() => setEditingCourse(course)} 
-                className="p-2 bg-yellow-500 text-white rounded"
+                className="p-2 bg-yellow-500 text-white rounded h-10"
               >
                 Editar
               </button>
               <button
-                onClick={() => deleteCourse(course.id)}
-                className="p-2 bg-red-500 text-white rounded"
+                onClick={() => deleteCourse(course.id, course.title)}
+                className="p-2 bg-red-500 text-white rounded h-10"
               >
                 Eliminar
               </button>
@@ -152,10 +160,12 @@ const Dashboard = () => {
     </div>
 
     {/* Franja con título y logos */}
-    <div className="flex items-center  justify-evenly bg-blue-500 p-4 space-x-8">
-        <h1 className="text-2xl font-bold text-white ">Coordinación de Políticas <br />Socioeducativas</h1>
-        <img src={logo1} alt="Logo Secretaria de Gobierno" className="h-16 mx-8" />
-        <img src={logo2} alt="Logo Municipalidad de Berisso" className="h-16 mx-8" />
+    <div className="flex flex-col md:flex-row items-center justify-evenly bg-blue-500 p-4 space-y-8 md:space-y-0 md:space-x-8">
+    <h1 className="text-2xl font-bold text-white text-center">
+          Coordinación de Políticas <br /> Socioeducativas
+        </h1>
+        <img src={logo1} alt="Logo Secretaria de Gobierno" className="h-16" />
+        <img src={logo2} alt="Logo Municipalidad de Berisso" className="h-16" />
       </div>
     </div>
     
