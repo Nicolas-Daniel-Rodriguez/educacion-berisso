@@ -1,18 +1,20 @@
 {
   "files": {
-    "main.css": "/educacion-berisso/static/css/main.6f911822.css",
-    "main.js": "/educacion-berisso/static/js/main.7ebaae1c.js",
+    "main.css": "/educacion-berisso/static/css/main.3f476afc.css",
+    "main.js": "/educacion-berisso/static/js/main.30c87127.js",
     "static/js/488.89301d68.chunk.js": "/educacion-berisso/static/js/488.89301d68.chunk.js",
     "static/media/portada.jpg": "/educacion-berisso/static/media/portada.b847f3ddf9dd7b6208e7.jpg",
-    "static/media/marketing.jpg": "/educacion-berisso/static/media/marketing.acb5d49c0c83c1fa73f0.jpg",
+    "static/media/salud.png": "/educacion-berisso/static/media/salud.6c0f5a0818f7827e84ef.png",
+    "static/media/metalmecanica.png": "/educacion-berisso/static/media/metalmecanica.f3ae994141b9c9ba7f71.png",
+    "static/media/administracion.png": "/educacion-berisso/static/media/administracion.cbf03ed2c9819b672df9.png",
     "static/media/programacion.jpg": "/educacion-berisso/static/media/programacion.026b3551a33e35183137.jpg",
     "index.html": "/educacion-berisso/index.html",
-    "main.6f911822.css.map": "/educacion-berisso/static/css/main.6f911822.css.map",
-    "main.7ebaae1c.js.map": "/educacion-berisso/static/js/main.7ebaae1c.js.map",
+    "main.3f476afc.css.map": "/educacion-berisso/static/css/main.3f476afc.css.map",
+    "main.30c87127.js.map": "/educacion-berisso/static/js/main.30c87127.js.map",
     "488.89301d68.chunk.js.map": "/educacion-berisso/static/js/488.89301d68.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.6f911822.css",
-    "static/js/main.7ebaae1c.js"
+    "static/css/main.3f476afc.css",
+    "static/js/main.30c87127.js"
   ]
 }
